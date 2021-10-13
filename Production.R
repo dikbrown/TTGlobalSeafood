@@ -1,12 +1,13 @@
 library(tidytuesdayR)
 library(ggplot2)
-library(forcats)
+
 
 tuesdata <- tidytuesdayR::tt_load('2021-10-12')
 seafood_consumption <- tuesdata$`seafood-and-fish-production-thousand-tonnes`
 head(tuesdata)
 head(seafood_consumption)
 
+#Clean up column names
 names(seafood_consumption) <- c('Entity', 'Code', 'Year', 'Pelagic', 
                                 'Crustaceans', 'Cephalopods', 'Demersal', 
                                 'Freshwater', 'Molluscs', 'Marine')
@@ -39,14 +40,6 @@ seafood_consumption$Entity_Type[seafood_consumption$Entity %in% continent] <- 'C
 continent_consumption <- seafood_consumption[seafood_consumption$Entity_Type == 'Continent',]
 continent_consumption$Entity <- factor(continent_consumption$Entity, levels = cont_levels)
 world_consumption <- seafood_consumption[seafood_consumption$Entity == 'World',]
-
-ggplot(data = continent_consumption) +
-  geom_smooth(aes(x = Year, y = Total/1000000, color = Entity, linetype = Entity), se = FALSE) +
-  ylab("Total Fish/Seafood Consumption \n(Millions of Metric Tonnes)") +
-  ggtitle("Almost all of the increase in seafood consumption is driven by Asia.") +
-  theme(legend.title = element_blank())
-
-
 
 
 ################
@@ -82,14 +75,14 @@ ggplot() +
 ########################
 
 
-
-
-seafood_consumption$Entity_Type[seafood_consumption$Entity %in% econ] <- 'Economic Group'
-# Create plot
-ggplot(data = seafood_consumption[seafood_consumption$Entity_Type == 'Economic Group',]) +
-  geom_area(aes(x = Year, y = Total/1000000, fill = Entity, linetype = Entity), se = FALSE) +
-  geom_smooth(data = )
-  ylab("Total Fish/Seafood Consumption \n(Millions of Metric Tonnes)") +
-  ggtitle("NEED TITLE") +
-  theme(legend.title = element_blank())
+# # Potential graph(s) for later
+# 
+# seafood_consumption$Entity_Type[seafood_consumption$Entity %in% econ] <- 'Economic Group'
+# # Create plot
+# ggplot(data = seafood_consumption[seafood_consumption$Entity_Type == 'Economic Group',]) +
+#   geom_area(aes(x = Year, y = Total/1000000, fill = Entity, linetype = Entity), se = FALSE) +
+#   geom_smooth(data = )
+#   ylab("Total Fish/Seafood Consumption \n(Millions of Metric Tonnes)") +
+#   ggtitle("NEED TITLE") +
+#   theme(legend.title = element_blank())
 
