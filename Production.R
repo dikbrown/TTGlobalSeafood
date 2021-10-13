@@ -60,20 +60,23 @@ ggplot() +
               aes(x = Year, y = Total/1000000), 
               color = 'black',
              size = 1) +
-  ylab("Total Fish/Seafood Consumption \n(Millions of Metric Tonnes)") +
+  ylab("Total Fish/Seafood Production \n(Millions of Metric Tonnes)") +
   xlab("") +
   theme_classic() +
   labs(title = "Since 1985, almost all of the increase in seafood production has been in Asia.") +
   theme(plot.title = element_text(size = 20, hjust = 0.2)) +
   theme(legend.position = 'none') +
   annotate(geom = "text", x = 2005, y = 75, label = 'Asia', size = 9) +
-  annotate(geom = "text", x = 2005, y = 40, label = 'Europe', size = 9) +
-  annotate(geom = "text", x = 1992, y = 22, label = 'South America', size = 9) +
+  annotate(geom = "text", x = 2006, y = 40, label = 'Europe', size = 9) +
+  annotate(geom = "text", x = 1992, y = 20, label = 'South America', size = 9) +
   annotate(geom = "text", x = 2005, y = 12, label = 'Africa', size = 9) +
-  annotate(geom = "text", x = 1992, y = 4, label = 'Northern America', size = 9) +
-  annotate(geom = "text", x = 2005, y = 1.5, label = 'Oceania', size = 9) +
+  annotate(geom = "text", x = 1993, y = 5, label = 'Northern America', size = 9) +
+  annotate(geom = "text", x = 2006, y = 1.5, label = 'Oceania', size = 9) +
   annotate(geom = "text", x = 1980, y = 110, label = 'World Total', size = 9) +
-  geom_segment(aes(x = 1984, y = 107, xend = 1988, yend = 98.5), size = 1)
+  geom_segment(aes(x = 1985, y = 106, xend = 1988, yend = 98.5), size = 1) +
+  geom_segment(aes(x = 1985, xend = 1985, y = 0, yend = 85), linetype = 2) +
+  geom_segment(aes(x = 1985, xend = 2013, y = 46, yend = 46), linetype = 2) +
+  annotate(geom= "text", x = 1985, y = -3, label = '1985')
 
 
 ########################
